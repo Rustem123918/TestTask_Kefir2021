@@ -15,12 +15,10 @@ public class Ship : MonoBehaviour
     private float lastFireTime;
     private Vector2 movement;
     private Vector2 mousePos;
-    private Rigidbody2D rb;
     private Camera cam;
     private AsteroidsSpawner spawner;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
         spawner = FindObjectOfType<AsteroidsSpawner>();
         lastFireTime = 0f;
@@ -29,6 +27,7 @@ public class Ship : MonoBehaviour
     {
         movement.y = Input.GetAxis("Vertical");
         movement.x = Input.GetAxis("Horizontal");
+
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
         if (Input.GetKeyDown(KeyCode.Space) && (Time.time-lastFireTime > fireDelay))
@@ -56,7 +55,9 @@ public class Ship : MonoBehaviour
     }
     private void MoveForward()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        var pos = transform.position;
+        var move = movement * speed * Time.fixedDeltaTime;
+        transform.position = pos + (Vector3)move;
     }
     private void FireBullet()
     {
