@@ -1,38 +1,26 @@
 using UnityEngine;
 
-public class ShipModel
+public class AsteroidModel
 {
-    public float Velocity => (currentPosition - previousPosition).magnitude / Time.fixedDeltaTime;
-
     public Vector2 CurrentPosition => currentPosition;
     private Vector2 currentPosition;
-
-    private Vector2 previousPosition;
-
     public float Rotation => rotation;
     private float rotation;
-
     private readonly float speed;
 
     private GameData gameData;
-    public ShipModel(float speed, GameData gameData)
+    public AsteroidModel(Vector2 startPosition, float startRotation, float speed, GameData gameData)
     {
+        currentPosition = startPosition;
+        this.rotation = startRotation;
         this.speed = speed;
-        currentPosition = Vector2.zero;
-        previousPosition = Vector2.zero;
-        rotation = 0f;
-
         this.gameData = gameData;
     }
-    public void Move(Vector2 direction)
+    public void Move()
     {
-        previousPosition = currentPosition;
-        currentPosition = previousPosition + direction * speed * Time.fixedDeltaTime;
+        Vector2 direction = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
+        currentPosition = currentPosition + direction * speed * Time.fixedDeltaTime;
         CheckBorders();
-    }
-    public void Rotate(float angle)
-    {
-        rotation = angle;
     }
     private void CheckBorders()
     {

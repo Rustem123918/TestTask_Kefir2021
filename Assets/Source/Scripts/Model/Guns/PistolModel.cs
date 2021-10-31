@@ -6,6 +6,7 @@ public class PistolModel : IGun
     public event Action OnFire;
 
     private readonly float fireDelay;
+
     private float lastFireTime;
     public PistolModel(float fireDelay)
     {
