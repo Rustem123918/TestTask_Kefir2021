@@ -57,7 +57,14 @@ public class Ship : MonoBehaviour
     {
         var pos = transform.position;
         var move = movement * speed * Time.fixedDeltaTime;
-        transform.position = pos + (Vector3)move;
+
+        var shipPos = (Vector2)transform.position;
+        var lookDir = mousePos - shipPos;
+        Vector2 direction = new Vector2(Mathf.Cos(transform.rotation.z ), Mathf.Sin(transform.rotation.z ));
+        //Debug.Log(direction);
+        //transform.position = pos + (Vector3)lookDir * speed * Time.fixedDeltaTime * Mathf.Clamp(movement.y, 0, 1);
+        transform.Translate(Mathf.Clamp(movement.y, 0, 1)*Vector3.up * speed * Time.fixedDeltaTime, Space.Self);
+        //transform.position = pos + (Vector3)move;
     }
     private void FireBullet()
     {
