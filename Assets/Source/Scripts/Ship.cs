@@ -4,44 +4,47 @@ using UnityEngine.SceneManagement;
 public class Ship : MonoBehaviour
 {
     [SerializeField]
-    private float speed;
+    private GameData gameData;
     [SerializeField]
-    private float fireDelay;
+    private ShipData shipData;
+    [SerializeField]
+    private PistolData pistolData;
+
     [SerializeField]
     private Transform firePosition;
     [SerializeField]
     private GameObject bulletPrefab;
 
-    private float lastFireTime;
-    private Vector2 movement;
+    private float movementY;
     private Vector2 mousePos;
     private Camera cam;
-    private AsteroidsSpawner spawner;
+
+    private ShipModel model;
+    private PistolModel pistolModel;
     private void Awake()
     {
+        model = new ShipModel(shipData.Speed, gameData);
+        pistolModel = new PistolModel(pistolData.FireDelay);
+        pistolModel.OnFire += FireBullet;
         cam = Camera.main;
-        spawner = FindObjectOfType<AsteroidsSpawner>();
-        lastFireTime = 0f;
     }
     private void Update()
     {
-        movement.y = Input.GetAxis("Vertical");
-        movement.x = Input.GetAxis("Horizontal");
+        movementY = Input.GetAxis("Vertical");
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Space) && (Time.time-lastFireTime > fireDelay))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            FireBullet();
-            lastFireTime = Time.time;
+            pistolModel.Fire();
         }
-
-        CheckBorders();
     }
     private void FixedUpdate()
     {
         MoveForward();
+        transform.position = model.CurrentPosition;
         LookAtMouse();
+        transform.rotation = Quaternion.Euler(0f, 0f, model.Rotation);
     }
     private void LookAtMouse()
     {
@@ -49,43 +52,20 @@ public class Ship : MonoBehaviour
         var lookDir = mousePos - shipPos;
         var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-        var rot = transform.rotation.eulerAngles;
-        rot.z = angle;
-        transform.rotation = Quaternion.Euler(rot);
+        model.Rotate(angle);
+
+        //var rot = transform.rotation.eulerAngles;
+        //rot.z = angle;
+        //transform.rotation = Quaternion.Euler(rot);
     }
     private void MoveForward()
     {
-        var pos = transform.position;
-        var move = movement * speed * Time.fixedDeltaTime;
-
-        var shipPos = (Vector2)transform.position;
-        var lookDir = mousePos - shipPos;
-        Vector2 direction = new Vector2(Mathf.Cos(transform.rotation.z ), Mathf.Sin(transform.rotation.z ));
-        //Debug.Log(direction);
-        //transform.position = pos + (Vector3)lookDir * speed * Time.fixedDeltaTime * Mathf.Clamp(movement.y, 0, 1);
-        transform.Translate(Mathf.Clamp(movement.y, 0, 1)*Vector3.up * speed * Time.fixedDeltaTime, Space.Self);
-        //transform.position = pos + (Vector3)move;
+        if (movementY != 0f)
+            model.Move();
     }
     private void FireBullet()
     {
         Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
-    }
-
-    private void CheckBorders()
-    {
-        var pos = transform.position;
-
-        if (pos.x > spawner.SpawnZone.x / 2f)
-            pos.x = -spawner.SpawnZone.x / 2f;
-        else if (pos.x < -spawner.SpawnZone.x / 2f)
-            pos.x = spawner.SpawnZone.x / 2f;
-
-        if (pos.y > spawner.SpawnZone.y / 2f)
-            pos.y = -spawner.SpawnZone.y / 2f;
-        else if (pos.y < -spawner.SpawnZone.y / 2f)
-            pos.y = spawner.SpawnZone.y / 2f;
-
-        transform.position = pos;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

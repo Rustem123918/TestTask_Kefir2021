@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AsteroidsSpawner : MonoBehaviour
 {
-    public Vector2 SpawnZone => gameData.GameZone;
     [SerializeField]
     private GameData gameData;
     [SerializeField]

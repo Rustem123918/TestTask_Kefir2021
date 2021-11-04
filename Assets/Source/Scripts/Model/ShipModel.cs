@@ -18,14 +18,15 @@ public class ShipModel
     public ShipModel(float speed, GameData gameData)
     {
         this.speed = speed;
-        currentPosition = Vector2.zero;
-        previousPosition = Vector2.zero;
-        rotation = 0f;
+        this.currentPosition = Vector2.zero;
+        this.previousPosition = Vector2.zero;
+        this.rotation = 0f;
 
         this.gameData = gameData;
     }
-    public void Move(Vector2 direction)
+    public void Move()
     {
+        Vector2 direction = new Vector2(Mathf.Cos((rotation+90f) * Mathf.Deg2Rad), Mathf.Sin((rotation+90f) * Mathf.Deg2Rad));
         previousPosition = currentPosition;
         currentPosition = previousPosition + direction * speed * Time.fixedDeltaTime;
         CheckBorders();

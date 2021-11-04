@@ -11,7 +11,7 @@ public class PistolModel : IGun
     public PistolModel(float fireDelay)
     {
         this.fireDelay = fireDelay;
-        lastFireTime = 0;
+        this.lastFireTime = 0;
     }
     public void Fire()
     {

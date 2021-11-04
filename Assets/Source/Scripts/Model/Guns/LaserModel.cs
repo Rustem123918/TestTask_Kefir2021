@@ -22,7 +22,7 @@ public class LaserModel : IGun
         this.increaseChargeSpeed = increaseChargeSpeed;
         this.regenerateTimeDelay = regenerateTimeDelay;
 
-        currentCharge = maxCharge;
+        this.currentCharge = maxCharge;
 
         CoroutineManager.Instance.StartRoutine(RegenerationRoutine());
     }
