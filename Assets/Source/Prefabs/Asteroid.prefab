@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4c67925765c8b43a8583b38f2f132f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
+  asteroidData: {fileID: 11400000, guid: f6d25962b45588d47921b3067c0c9d3f, type: 2}
 --- !u!50 &754560891400337919
 Rigidbody2D:
   serializedVersion: 4

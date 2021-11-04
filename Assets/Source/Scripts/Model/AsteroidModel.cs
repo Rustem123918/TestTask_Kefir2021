@@ -11,7 +11,7 @@ public class AsteroidModel
     private GameData gameData;
     public AsteroidModel(Vector2 startPosition, float startRotation, float speed, GameData gameData)
     {
-        currentPosition = startPosition;
+        this.currentPosition = startPosition;
         this.rotation = startRotation;
         this.speed = speed;
         this.gameData = gameData;

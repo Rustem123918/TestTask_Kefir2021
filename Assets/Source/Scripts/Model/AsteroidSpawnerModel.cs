@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AsteroidSpawnerModel
 {
-    public event System.Action<Vector2> OnSpawn;
+    public event System.Action<Vector2, float> OnSpawn;
 
     private Vector2 timeDelayRange;
     private Vector2 asteroidCountRange;
@@ -12,11 +12,11 @@ public class AsteroidSpawnerModel
 
     private Coroutine spawnRoutine;
 
-    public AsteroidSpawnerModel(Vector2 timeDelayRange, Vector2 asteroidCountRange, float timeDelay, GameData gameData)
+    public AsteroidSpawnerModel(AsteroidSpawnerData spawnerData, GameData gameData)
     {
-        this.timeDelayRange = timeDelayRange;
-        this.asteroidCountRange = asteroidCountRange;
-        this.timeDelay = timeDelay;
+        this.timeDelayRange = spawnerData.TimeDelayRange;
+        this.asteroidCountRange = spawnerData.AsteroidCountRange;
+        this.timeDelay = spawnerData.TimeDelay;
         this.gameData = gameData;
     }
     public void StartSpawning()
@@ -42,7 +42,8 @@ public class AsteroidSpawnerModel
         var delay = GetTimeDelay();
         yield return new WaitForSeconds(delay);
         var pos = GetRandomPositon();
-        OnSpawn?.Invoke(pos);
+        var rot = GetRandomRotation();
+        OnSpawn?.Invoke(pos, rot);
     }
     private float GetTimeDelay()
     {
@@ -51,6 +52,18 @@ public class AsteroidSpawnerModel
     private int GetCountAsteroidsToSpawn()
     {
         return Random.Range((int)asteroidCountRange.x, (int)asteroidCountRange.y);
+    }
+    private float GetRandomRotation()
+    {
+        var r = Random.Range(2, 4);
+        if (r % 2 == 0)
+        {
+            return Random.Range(1f, 179f);
+        }
+        else
+        {
+            return Random.Range(-1f, -179f);
+        }
     }
     /// <summary>
     /// Возвращает случайную точку спавна на границе спавнера
