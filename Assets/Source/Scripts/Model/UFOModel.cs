@@ -18,10 +18,14 @@ public class UFOModel
         this.speed = speed;
         this.gameData = gameData;
     }
+    public void UpdateShipPos(Vector2 shipNewPos)
+    {
+        shipPosition = shipNewPos;
+    }
     public void Move()
     {
         LookAtShip();
-        Vector2 direction = new Vector2(Mathf.Cos(rotation * Mathf.Deg2Rad), Mathf.Sin(rotation * Mathf.Deg2Rad));
+        Vector2 direction = new Vector2(Mathf.Cos((rotation+90f) * Mathf.Deg2Rad), Mathf.Sin((rotation+90f) * Mathf.Deg2Rad));
         currentPosition = currentPosition + direction * speed * Time.fixedDeltaTime;
         CheckBorders();
     }

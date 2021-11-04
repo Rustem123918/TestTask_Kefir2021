@@ -13,11 +13,11 @@ public class UFOSpawnerModel
 
     private Coroutine spawnRoutine;
 
-    public UFOSpawnerModel(Vector2 timeDelayRange, Vector2 ufoCountRange, float timeDelay, GameData gameData)
+    public UFOSpawnerModel(UFOSpawnerData spawnerData, GameData gameData)
     {
-        this.timeDelayRange = timeDelayRange;
-        this.ufoCountRange = ufoCountRange;
-        this.timeDelay = timeDelay;
+        this.timeDelayRange = spawnerData.TimeDelayRange;
+        this.ufoCountRange = spawnerData.UFOCountRange;
+        this.timeDelay = spawnerData.TimeDelay;
         this.gameData = gameData;
     }
     public void StartSpawning()
