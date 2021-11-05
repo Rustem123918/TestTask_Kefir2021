@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 357d9f6b4be2fc343b816142f94a31d6, type: 3}
   m_Name: AsteroidData
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 3

@@ -42,8 +42,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7732226839173868920}
   - component: {fileID: 4595716063179332706}
-  - component: {fileID: 6245333112796012836}
   - component: {fileID: 7728858963696321027}
+  - component: {fileID: 5407883307743744792}
   m_Layer: 0
   m_Name: UFO
   m_TagString: UFO
@@ -88,31 +88,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &6245333112796012836
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3689544584919592352}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: -0.029197454, y: 0.26822066}
-  - {x: 0.5628476, y: 0.00000023841858}
-  - {x: 0.020786285, y: -0.27563095}
-  - {x: -0.49605453, y: 0}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
 --- !u!114 &7728858963696321027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +102,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
   ufoData: {fileID: 11400000, guid: a0ea4edb07d3a6449bfc7c268b274b88, type: 2}
+--- !u!60 &5407883307743744792
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689544584919592352}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.0059535215, y: 0.2855773}
+      - {x: -0.54026353, y: 0.005387366}
+      - {x: 0.007567048, y: -0.28510708}
+      - {x: 0.5401572, y: -0.0052914023}
 --- !u!1 &8094229742178662569
 GameObject:
   m_ObjectHideFlags: 0

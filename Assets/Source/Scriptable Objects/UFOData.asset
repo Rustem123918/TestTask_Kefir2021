@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 739b3d482d101c644a0a65eb10e7f4bb, type: 3}
   m_Name: UFOData
   m_EditorClassIdentifier: 
-  Speed: 5
+  Speed: 2

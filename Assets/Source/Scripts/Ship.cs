@@ -69,7 +69,7 @@ public class Ship : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Asteroid"))
+        if (collision.CompareTag("Asteroid") || collision.CompareTag("UFO"))
             SceneManager.LoadScene(0);
     }
 }
