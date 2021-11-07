@@ -1,28 +1,18 @@
 using UnityEngine;
 
-public class UFOModel
+public class UFOModel : MoveableObjectBaseModel
 {
-    public Vector2 CurrentPosition => currentPosition;
-    private Vector2 currentPosition;
-    public float Rotation => rotation;
-    private float rotation;
     private Vector2 shipPosition;
-    private readonly float speed;
-
-    private GameData gameData;
-    
-    public UFOModel(Vector2 startPosition, Vector2 shipPosition, float speed, GameData gameData)
+    public UFOModel(Vector2 shipPosition, Vector2 startPosition, float startRotation, float speed, GameData gameData) 
+        : base(startPosition, startRotation, speed, gameData)
     {
-        this.currentPosition = startPosition;
         this.shipPosition = shipPosition;
-        this.speed = speed;
-        this.gameData = gameData;
     }
     public void UpdateShipPos(Vector2 shipNewPos)
     {
         shipPosition = shipNewPos;
     }
-    public void Move()
+    public override void Move()
     {
         LookAtShip();
         Vector2 direction = new Vector2(Mathf.Cos((rotation+90f) * Mathf.Deg2Rad), Mathf.Sin((rotation+90f) * Mathf.Deg2Rad));
@@ -34,21 +24,5 @@ public class UFOModel
         var lookDir = shipPosition - currentPosition;
         var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rotation = angle;
-    }
-    private void CheckBorders()
-    {
-        var pos = currentPosition;
-
-        if (pos.x > gameData.GameZone.x / 2f)
-            pos.x = -gameData.GameZone.x / 2f;
-        else if (pos.x < -gameData.GameZone.x / 2f)
-            pos.x = gameData.GameZone.x / 2f;
-
-        if (pos.y > gameData.GameZone.y / 2f)
-            pos.y = -gameData.GameZone.y / 2f;
-        else if (pos.y < -gameData.GameZone.y / 2f)
-            pos.y = gameData.GameZone.y / 2f;
-
-        currentPosition = pos;
     }
 }

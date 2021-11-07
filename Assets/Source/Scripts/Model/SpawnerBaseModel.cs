@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UFOSpawnerModel
+public class SpawnerBaseModel
 {
-    public event System.Action<Vector2> OnSpawn;
+    public event System.Action<Vector2, float> OnSpawn;
 
     private Vector2 timeDelayRange;
-    private Vector2 ufoCountRange;
+    private Vector2 objectsCountRange;
     private float timeDelay;
     private GameData gameData;
 
     private Coroutine spawnRoutine;
 
-    public UFOSpawnerModel(UFOSpawnerData spawnerData, GameData gameData)
+    public SpawnerBaseModel(SpawnerData spawnerData, GameData gameData)
     {
         this.timeDelayRange = spawnerData.TimeDelayRange;
-        this.ufoCountRange = spawnerData.UFOCountRange;
+        this.objectsCountRange = spawnerData.ObjectsCountRange;
         this.timeDelay = spawnerData.TimeDelay;
         this.gameData = gameData;
     }
@@ -43,7 +43,8 @@ public class UFOSpawnerModel
         var delay = GetTimeDelay();
         yield return new WaitForSeconds(delay);
         var pos = GetRandomPositon();
-        OnSpawn?.Invoke(pos);
+        var rot = GetRandomRotation();
+        OnSpawn?.Invoke(pos, rot);
     }
     private float GetTimeDelay()
     {
@@ -51,7 +52,19 @@ public class UFOSpawnerModel
     }
     private int GetCountAsteroidsToSpawn()
     {
-        return Random.Range((int)ufoCountRange.x, (int)ufoCountRange.y);
+        return Random.Range((int)objectsCountRange.x, (int)objectsCountRange.y);
+    }
+    private float GetRandomRotation()
+    {
+        var r = Random.Range(2, 4);
+        if (r % 2 == 0)
+        {
+            return Random.Range(1f, 179f);
+        }
+        else
+        {
+            return Random.Range(-1f, -179f);
+        }
     }
     /// <summary>
     /// Возвращает случайную точку спавна на границе спавнера

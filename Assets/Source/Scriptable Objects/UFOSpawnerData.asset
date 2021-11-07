@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20ca114ea29ce99458b9c34301da601c, type: 3}
+  m_Script: {fileID: 11500000, guid: 61a871832deec8b4d82226f0fc635b36, type: 3}
   m_Name: UFOSpawnerData
   m_EditorClassIdentifier: 
-  TimeDelayRange: {x: 3, y: 6}
-  UFOCountRange: {x: 1, y: 1}
-  TimeDelay: 3
+  TimeDelayRange: {x: 4, y: 8}
+  ObjectsCountRange: {x: 1, y: 2}
+  TimeDelay: 4

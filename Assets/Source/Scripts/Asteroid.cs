@@ -5,13 +5,13 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameData gameData;
     [SerializeField]
-    private AsteroidData asteroidData;
+    private float speed;
 
     private AsteroidModel model;
     private void Awake()
     {
         var rot = transform.rotation.eulerAngles.z;
-        model = new AsteroidModel(transform.position, rot, asteroidData.Speed, gameData);
+        model = new AsteroidModel(transform.position, rot, speed, gameData);
     }
     private void FixedUpdate()
     {

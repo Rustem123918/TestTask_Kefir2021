@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: AsteroidSpawnerData
   m_EditorClassIdentifier: 
   TimeDelayRange: {x: 3, y: 6}
-  AsteroidCountRange: {x: 1, y: 3}
+  ObjectsCountRange: {x: 1, y: 3}
   TimeDelay: 3

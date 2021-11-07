@@ -6,9 +6,9 @@ public class Ship : MonoBehaviour
     [SerializeField]
     private GameData gameData;
     [SerializeField]
-    private ShipData shipData;
-    [SerializeField]
     private PistolData pistolData;
+    [SerializeField]
+    private float speed;
 
     [SerializeField]
     private Transform firePosition;
@@ -23,7 +23,7 @@ public class Ship : MonoBehaviour
     private PistolModel pistolModel;
     private void Awake()
     {
-        model = new ShipModel(shipData.Speed, gameData);
+        model = new ShipModel(transform.position, 0f, speed, gameData);
         pistolModel = new PistolModel(pistolData.FireDelay);
         pistolModel.OnFire += FireBullet;
         cam = Camera.main;

@@ -5,20 +5,20 @@ public class UFO : MonoBehaviour
     [SerializeField]
     private GameData gameData;
     [SerializeField]
-    private UFOData ufoData;
+    private float speed;
 
     private UFOModel model;
 
-    private Vector2 shipPos;
+    private Ship ship;
     private void Awake()
     {
-        shipPos = FindObjectOfType<Ship>().transform.position;
-        model = new UFOModel(transform.position, shipPos, ufoData.Speed, gameData);
+        ship = FindObjectOfType<Ship>();
+        transform.rotation = Quaternion.identity;
+        model = new UFOModel(ship.transform.position, transform.position, 0f, speed, gameData);
     }
     private void FixedUpdate()
     {
-        shipPos = FindObjectOfType<Ship>().transform.position;
-        model.UpdateShipPos(shipPos);
+        model.UpdateShipPos(ship.transform.position);
         model.Move();
         transform.position = model.CurrentPosition;
     }

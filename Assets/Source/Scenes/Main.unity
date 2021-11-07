@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 295460709}
-  - component: {fileID: 295460708}
+  - component: {fileID: 295460710}
   m_Layer: 0
   m_Name: UFO Spawner
   m_TagString: Untagged
@@ -140,21 +140,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &295460708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 295460707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6176202e986bed438dee83304a40a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
-  spawnerData: {fileID: 11400000, guid: 8376b79c32b31bd4eb3228d4be0f95eb, type: 2}
-  ufoPrefab: {fileID: 3689544584919592352, guid: a3763c05661712e4598983a539f286b6, type: 3}
 --- !u!4 &295460709
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +155,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &295460710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295460707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a4da3d98478e645817fc0d2122757b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
+  spawnerData: {fileID: 11400000, guid: 0295d914eb15df546b8b7c2f2916d275, type: 2}
+  objectToSpawnPrefab: {fileID: 3689544584919592352, guid: a3763c05661712e4598983a539f286b6, type: 3}
 --- !u!1 &304006049
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +179,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 304006051}
-  - component: {fileID: 304006050}
+  - component: {fileID: 304006052}
   m_Layer: 0
   m_Name: Asteroid Spawner
   m_TagString: Untagged
@@ -187,21 +187,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &304006050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 304006049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd4f53cddfad1694ab4ff919e20cc95e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
-  spawnerData: {fileID: 11400000, guid: 0a04c8b1f8cb9994499f611a77b64e16, type: 2}
-  asteroidPrefab: {fileID: 471781796906059837, guid: 145024bbb0800b849836e98e57605300, type: 3}
 --- !u!4 &304006051
 Transform:
   m_ObjectHideFlags: 0
@@ -217,6 +202,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &304006052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304006049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63a4da3d98478e645817fc0d2122757b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
+  spawnerData: {fileID: 11400000, guid: 0a04c8b1f8cb9994499f611a77b64e16, type: 2}
+  objectToSpawnPrefab: {fileID: 471781796906059837, guid: 145024bbb0800b849836e98e57605300, type: 3}
 --- !u!1 &416554000
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,8 +481,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
-  shipData: {fileID: 11400000, guid: 09b7e3fcf5053c047a394e690639a2f5, type: 2}
   pistolData: {fileID: 11400000, guid: d3534d34dd409e941a975e835a221840, type: 2}
+  speed: 5
   firePosition: {fileID: 1320175724}
   bulletPrefab: {fileID: 7688691954142543380, guid: 22bd2e31f7ff31e4b9e530791bd9a38e, type: 3}
 --- !u!4 &1421656510

@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
-  ufoData: {fileID: 11400000, guid: a0ea4edb07d3a6449bfc7c268b274b88, type: 2}
+  speed: 2
 --- !u!60 &5407883307743744792
 PolygonCollider2D:
   m_ObjectHideFlags: 0

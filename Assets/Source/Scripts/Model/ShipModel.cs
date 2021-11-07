@@ -1,30 +1,17 @@
 using UnityEngine;
 
-public class ShipModel
+public class ShipModel : MoveableObjectBaseModel
 {
     public float Velocity => (currentPosition - previousPosition).magnitude / Time.fixedDeltaTime;
 
-    public Vector2 CurrentPosition => currentPosition;
-    private Vector2 currentPosition;
-
     private Vector2 previousPosition;
 
-    public float Rotation => rotation;
-    private float rotation;
-
-    private readonly float speed;
-
-    private GameData gameData;
-    public ShipModel(float speed, GameData gameData)
+    public ShipModel(Vector2 startPosition, float startRotation, float speed, GameData gameData)
+        : base(startPosition, startRotation, speed, gameData)
     {
-        this.speed = speed;
-        this.currentPosition = Vector2.zero;
-        this.previousPosition = Vector2.zero;
-        this.rotation = 0f;
-
-        this.gameData = gameData;
+        this.previousPosition = startPosition;
     }
-    public void Move()
+    public override void Move()
     {
         Vector2 direction = new Vector2(Mathf.Cos((rotation+90f) * Mathf.Deg2Rad), Mathf.Sin((rotation+90f) * Mathf.Deg2Rad));
         previousPosition = currentPosition;
@@ -34,21 +21,5 @@ public class ShipModel
     public void Rotate(float angle)
     {
         rotation = angle;
-    }
-    private void CheckBorders()
-    {
-        var pos = currentPosition;
-
-        if (pos.x > gameData.GameZone.x / 2f)
-            pos.x = -gameData.GameZone.x / 2f;
-        else if (pos.x < -gameData.GameZone.x / 2f)
-            pos.x = gameData.GameZone.x / 2f;
-
-        if (pos.y > gameData.GameZone.y / 2f)
-            pos.y = -gameData.GameZone.y / 2f;
-        else if (pos.y < -gameData.GameZone.y / 2f)
-            pos.y = gameData.GameZone.y / 2f;
-
-        currentPosition = pos;
     }
 }

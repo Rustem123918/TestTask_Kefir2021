@@ -1,27 +1,28 @@
 using UnityEngine;
 
-public class UFOSpawner : MonoBehaviour
+public class SpawnerBase : MonoBehaviour
 {
     [SerializeField]
     private GameData gameData;
     [SerializeField]
-    private UFOSpawnerData spawnerData;
+    private SpawnerData spawnerData;
     [SerializeField]
-    private GameObject ufoPrefab;
+    private GameObject objectToSpawnPrefab;
 
-    private UFOSpawnerModel model;
+    private SpawnerBaseModel model;
     private void Awake()
     {
-        model = new UFOSpawnerModel(spawnerData, gameData);
+        model = new SpawnerBaseModel(spawnerData, gameData);
         model.OnSpawn += Spawn;
     }
     private void Start()
     {
         model.StartSpawning();
     }
-    private void Spawn(Vector2 pos)
+    private void Spawn(Vector2 pos, float rot)
     {
-        Instantiate(ufoPrefab, pos, Quaternion.identity);
+        var rotation = Quaternion.Euler(0f, 0f, rot);
+        Instantiate(objectToSpawnPrefab, pos, rotation);
     }
 
     private void OnDrawGizmos()
