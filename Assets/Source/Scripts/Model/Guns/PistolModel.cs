@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PistolModel : IGun
+public class PistolModel
 {
     public event Action OnFire;
 

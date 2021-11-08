@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class LaserModel : IGun
+public class LaserModel
 {
     public event Action OnFire;
 

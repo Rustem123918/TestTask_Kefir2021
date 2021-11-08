@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 4595716063179332706}
   - component: {fileID: 7728858963696321027}
   - component: {fileID: 5407883307743744792}
+  - component: {fileID: 3793283412591020022}
   m_Layer: 0
   m_Name: UFO
   m_TagString: UFO
@@ -131,6 +132,19 @@ PolygonCollider2D:
       - {x: -0.54026353, y: 0.005387366}
       - {x: 0.007567048, y: -0.28510708}
       - {x: 0.5401572, y: -0.0052914023}
+--- !u!114 &3793283412591020022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689544584919592352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca1dc4dd43653b4c9bcebdb140d6dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsCount: 200
 --- !u!1 &8094229742178662569
 GameObject:
   m_ObjectHideFlags: 0

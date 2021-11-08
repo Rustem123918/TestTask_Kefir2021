@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 7255116700627408594}
   - component: {fileID: 9218161519791514594}
   - component: {fileID: 5692408578773637488}
+  - component: {fileID: 483175702082421018}
   m_Layer: 0
   m_Name: Asteroid S
   m_TagString: Asteroid
@@ -206,3 +207,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46
+--- !u!114 &483175702082421018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293901147184058912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ca1dc4dd43653b4c9bcebdb140d6dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinsCount: 100

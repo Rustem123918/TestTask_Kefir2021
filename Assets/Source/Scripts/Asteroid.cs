@@ -11,15 +11,16 @@ public class Asteroid : MonoBehaviour
     private float speed;
 
     [SerializeField]
-    private GameObject asteroidLarge;
-    [SerializeField]
     private GameObject asteroidMedium;
     [SerializeField]
     private GameObject asteroidSmall;
 
+    private AddCoinsComponent addCoinsComponent;
+
     private AsteroidModel model;
     private void Awake()
     {
+        addCoinsComponent = GetComponent<AddCoinsComponent>();
         var rot = transform.rotation.eulerAngles.z;
         model = new AsteroidModel(transform.position, rot, speed, gameData);
     }
@@ -33,6 +34,7 @@ public class Asteroid : MonoBehaviour
         if (collision.CompareTag("Bullet"))
         {
             CheckAsteroidType();
+            addCoinsComponent.AddCoins();
             Destroy(gameObject);
         }
     }

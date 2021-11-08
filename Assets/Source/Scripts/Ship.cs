@@ -1,3 +1,4 @@
+using Supyrb;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -70,6 +71,9 @@ public class Ship : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Asteroid") || collision.CompareTag("UFO"))
+        {
+            Signals.Clear();
             SceneManager.LoadScene(0);
+        }
     }
 }

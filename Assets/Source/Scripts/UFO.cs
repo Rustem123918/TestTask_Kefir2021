@@ -7,12 +7,14 @@ public class UFO : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private UFOModel model;
-
     private Ship ship;
+    private AddCoinsComponent addCoinsComponent;
+
+    private UFOModel model;
     private void Awake()
     {
         ship = FindObjectOfType<Ship>();
+        addCoinsComponent = GetComponent<AddCoinsComponent>();
         transform.rotation = Quaternion.identity;
         model = new UFOModel(ship.transform.position, transform.position, 0f, speed, gameData);
     }
@@ -25,6 +27,10 @@ public class UFO : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet"))
+        {
+            addCoinsComponent.AddCoins();
             Destroy(gameObject);
+        }
+
     }
 }
