@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1aca511984f1f4d91e34c46d9ef2c2, type: 3}
   m_Name: PistolData
   m_EditorClassIdentifier: 
-  FireDelay: 0.5
+  FireDelay: 0.1

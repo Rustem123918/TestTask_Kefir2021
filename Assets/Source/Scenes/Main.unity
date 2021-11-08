@@ -216,7 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
   spawnerData: {fileID: 11400000, guid: 0a04c8b1f8cb9994499f611a77b64e16, type: 2}
-  objectToSpawnPrefab: {fileID: 471781796906059837, guid: 145024bbb0800b849836e98e57605300, type: 3}
+  objectToSpawnPrefab: {fileID: 2479875209634550541, guid: 2a62e63082f57764e95952e37b1831a1, type: 3}
 --- !u!1 &416554000
 GameObject:
   m_ObjectHideFlags: 0
