@@ -6,8 +6,6 @@ public class Asteroid : MonoBehaviour
     private EAsteroidType asteroidType;
 
     [SerializeField]
-    private GameData gameData;
-    [SerializeField]
     private float speed;
 
     [SerializeField]
@@ -22,7 +20,7 @@ public class Asteroid : MonoBehaviour
     {
         addCoinsComponent = GetComponent<AddCoinsComponent>();
         var rot = transform.rotation.eulerAngles.z;
-        model = new AsteroidModel(transform.position, rot, speed, gameData);
+        model = new AsteroidModel(transform.position, rot, speed);
     }
     private void FixedUpdate()
     {

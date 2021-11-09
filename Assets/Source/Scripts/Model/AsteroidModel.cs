@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AsteroidModel : MoveableObjectBaseModel
 {
-    public AsteroidModel(Vector2 startPosition, float startRotation, float speed, GameData gameData)
-        : base(startPosition, startRotation, speed, gameData)
+    public AsteroidModel(Vector2 startPosition, float startRotation, float speed)
+        : base(startPosition, startRotation, speed)
     {
     }
     public override void Move()

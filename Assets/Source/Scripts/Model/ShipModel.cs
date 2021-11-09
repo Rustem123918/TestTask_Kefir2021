@@ -6,8 +6,8 @@ public class ShipModel : MoveableObjectBaseModel
 
     private Vector2 previousPosition;
 
-    public ShipModel(Vector2 startPosition, float startRotation, float speed, GameData gameData)
-        : base(startPosition, startRotation, speed, gameData)
+    public ShipModel(Vector2 startPosition, float startRotation, float speed)
+        : base(startPosition, startRotation, speed)
     {
         this.previousPosition = startPosition;
     }

@@ -3,8 +3,6 @@ using UnityEngine;
 public class UFO : MonoBehaviour
 {
     [SerializeField]
-    private GameData gameData;
-    [SerializeField]
     private float speed;
 
     private Ship ship;
@@ -16,7 +14,7 @@ public class UFO : MonoBehaviour
         ship = FindObjectOfType<Ship>();
         addCoinsComponent = GetComponent<AddCoinsComponent>();
         transform.rotation = Quaternion.identity;
-        model = new UFOModel(ship.transform.position, transform.position, 0f, speed, gameData);
+        model = new UFOModel(ship.transform.position, transform.position, 0f, speed);
     }
     private void FixedUpdate()
     {

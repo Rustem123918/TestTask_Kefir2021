@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class Ship : MonoBehaviour
 {
     [SerializeField]
-    private GameData gameData;
-    [SerializeField]
     private PistolData pistolData;
     [SerializeField]
     private float speed;
@@ -24,7 +22,7 @@ public class Ship : MonoBehaviour
     private PistolModel pistolModel;
     private void Awake()
     {
-        model = new ShipModel(transform.position, 0f, speed, gameData);
+        model = new ShipModel(transform.position, 0f, speed);
         pistolModel = new PistolModel(pistolData.FireDelay);
         pistolModel.OnFire += FireBullet;
         cam = Camera.main;

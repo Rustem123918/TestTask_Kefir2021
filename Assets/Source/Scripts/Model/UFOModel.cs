@@ -3,8 +3,8 @@ using UnityEngine;
 public class UFOModel : MoveableObjectBaseModel
 {
     private Vector2 shipPosition;
-    public UFOModel(Vector2 shipPosition, Vector2 startPosition, float startRotation, float speed, GameData gameData) 
-        : base(startPosition, startRotation, speed, gameData)
+    public UFOModel(Vector2 shipPosition, Vector2 startPosition, float startRotation, float speed) 
+        : base(startPosition, startRotation, speed)
     {
         this.shipPosition = shipPosition;
     }
