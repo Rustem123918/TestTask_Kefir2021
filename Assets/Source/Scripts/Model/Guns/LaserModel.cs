@@ -5,6 +5,11 @@ using UnityEngine;
 public class LaserModel
 {
     public event Action OnFire;
+    public event Action OnChargeEnd;
+
+    public float MaxCharge => maxCharge;
+    public float CurrentCharge => currentCharge;
+    public float TimeLeft => Mathf.Clamp(regenerateTimeDelay - Time.time + lastFireTime, 0, regenerateTimeDelay);
 
     private readonly float maxCharge;
     private readonly float decreaseChargeSpeed;
@@ -29,9 +34,16 @@ public class LaserModel
     public void Fire()
     {
         if (currentCharge == 0f)
+        {
+            OnChargeEnd?.Invoke();
             return;
+        }
         if (increaseChargeRoutine != null)
+        {
+            Debug.Log("Stop increase routine");
             CoroutineManager.Instance.StopRoutine(increaseChargeRoutine);
+            increaseChargeRoutine = null;
+        }
 
         currentCharge = Mathf.Max(0f, currentCharge - decreaseChargeSpeed * Time.deltaTime);
         lastFireTime = Time.time;
@@ -51,8 +63,12 @@ public class LaserModel
     {
         while(true)
         {
-            if (CheckRegenerateTimeDelay() && increaseChargeRoutine != null && currentCharge < maxCharge)
-                CoroutineManager.Instance.StartRoutine(IncreaseChargeRoutine());
+            if (CheckRegenerateTimeDelay() && increaseChargeRoutine == null && currentCharge < maxCharge)
+            {
+                Debug.Log("Start increase routine");
+                increaseChargeRoutine = CoroutineManager.Instance.StartRoutine(IncreaseChargeRoutine());
+            }
+
             yield return null;
         }
     }

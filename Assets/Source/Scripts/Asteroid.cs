@@ -35,6 +35,11 @@ public class Asteroid : MonoBehaviour
             addCoinsComponent.AddCoins();
             Destroy(gameObject);
         }
+        else if(collision.CompareTag("Laser"))
+        {
+            addCoinsComponent.AddCoins();
+            Destroy(gameObject);
+        }
     }
 
     private void CheckAsteroidType()

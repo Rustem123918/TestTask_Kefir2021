@@ -8,6 +8,7 @@ TagManager:
   - Asteroid
   - Bullet
   - UFO
+  - Laser
   layers:
   - Default
   - TransparentFX

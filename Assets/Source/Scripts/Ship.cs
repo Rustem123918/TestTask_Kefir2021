@@ -4,28 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField]
-    private PistolData pistolData;
+    public LaserModel LaserModel => laser.LaserModel;
+
     [SerializeField]
     private float speed;
 
-    [SerializeField]
-    private Transform firePosition;
-    [SerializeField]
-    private GameObject bulletPrefab;
+    private Pistol pistol;
+    private Laser laser;
 
     private float movementY;
     private Vector2 mousePos;
     private Camera cam;
 
     private ShipModel model;
-    private PistolModel pistolModel;
     private void Awake()
     {
         model = new ShipModel(transform.position, 0f, speed);
-        pistolModel = new PistolModel(pistolData.FireDelay);
-        pistolModel.OnFire += FireBullet;
         cam = Camera.main;
+
+        pistol = GetComponent<Pistol>();
+        laser = GetComponent<Laser>();
     }
     private void Update()
     {
@@ -33,9 +31,17 @@ public class Ship : MonoBehaviour
 
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
-            pistolModel.Fire();
+            pistol.Fire();
+        }
+        else if(Input.GetMouseButton(1))
+        {
+            laser.Fire();
+        }
+        else if(Input.GetMouseButtonUp(1))
+        {
+            laser.StopFire();
         }
     }
     private void FixedUpdate()
@@ -61,10 +67,6 @@ public class Ship : MonoBehaviour
     {
         if (movementY != 0f)
             model.Move();
-    }
-    private void FireBullet()
-    {
-        Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
