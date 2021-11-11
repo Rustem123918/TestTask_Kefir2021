@@ -8,65 +8,56 @@ public class Ship : MonoBehaviour
 
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private float rotationSpeed;
 
     private Pistol pistol;
     private Laser laser;
 
-    private float movementY;
-    private Vector2 mousePos;
-    private Camera cam;
+    private bool moveForward;
+    private ERotateDirection rotateDirection;
 
     private ShipModel model;
     private void Awake()
     {
-        model = new ShipModel(transform.position, 0f, speed);
-        cam = Camera.main;
-
+        model = new ShipModel(transform.position, 0f, speed, rotationSpeed);
+        rotateDirection = ERotateDirection.None;
         pistol = GetComponent<Pistol>();
         laser = GetComponent<Laser>();
     }
     private void Update()
     {
-        movementY = Input.GetAxis("Vertical");
+        if (Input.GetKeyDown(KeyCode.D))
+            rotateDirection = ERotateDirection.Right;
+        else if (Input.GetKeyUp(KeyCode.D))
+            rotateDirection = ERotateDirection.None;
+        else if (Input.GetKeyDown(KeyCode.A))
+            rotateDirection = ERotateDirection.Left;
+        else if (Input.GetKeyUp(KeyCode.A))
+            rotateDirection = ERotateDirection.None;
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        if (Input.GetKeyDown(KeyCode.W))
+            moveForward = true;
+        else if (Input.GetKeyUp(KeyCode.W))
+            moveForward = false;
 
-        if (Input.GetMouseButtonDown(0))
-        {
+        if (Input.GetKeyDown(KeyCode.K))
             pistol.Fire();
-        }
-        else if(Input.GetMouseButton(1))
-        {
+        else if (Input.GetKey(KeyCode.L))
             laser.Fire();
-        }
-        else if(Input.GetMouseButtonUp(1))
-        {
+        else if (Input.GetKeyUp(KeyCode.L))
             laser.StopFire();
-        }
+
+        //model.Update();
     }
     private void FixedUpdate()
     {
-        MoveForward();
-        transform.position = model.CurrentPosition;
-        LookAtMouse();
-        transform.rotation = Quaternion.Euler(0f, 0f, model.Rotation);
-    }
-    private void LookAtMouse()
-    {
-        var shipPos = (Vector2)transform.position;
-        var lookDir = mousePos - shipPos;
-        var angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-
-        model.Rotate(angle);
-
-        //var rot = transform.rotation.eulerAngles;
-        //rot.z = angle;
-        //transform.rotation = Quaternion.Euler(rot);
-    }
-    private void MoveForward()
-    {
-        if (movementY != 0f)
+        if (moveForward)
             model.Move();
+        transform.position = model.CurrentPosition;
+
+        model.Rotate(rotateDirection);
+        transform.rotation = Quaternion.Euler(0f, 0f, model.Rotation);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
