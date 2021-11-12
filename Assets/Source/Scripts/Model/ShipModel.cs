@@ -46,6 +46,10 @@ public class ShipModel : MoveableObjectBaseModel
         //currentPosition = previousPosition + direction  * Time.fixedDeltaTime;
         CheckBorders();
     }
+    public void Stop()
+    {
+        previousPosition = currentPosition;
+    }
     public void Rotate(ERotateDirection rotateDirection)
     {
         if (rotateDirection == ERotateDirection.Right)

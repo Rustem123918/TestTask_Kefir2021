@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Ship : MonoBehaviour
 {
-    public LaserModel LaserModel => laser.LaserModel;
+    public ShipModel ShipModel => model;
 
     [SerializeField]
     private float speed;
@@ -54,6 +54,8 @@ public class Ship : MonoBehaviour
     {
         if (moveForward)
             model.Move();
+        else
+            model.Stop();
         transform.position = model.CurrentPosition;
 
         model.Rotate(rotateDirection);
