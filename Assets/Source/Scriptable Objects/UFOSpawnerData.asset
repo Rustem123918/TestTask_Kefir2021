@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a871832deec8b4d82226f0fc635b36, type: 3}
   m_Name: UFOSpawnerData
   m_EditorClassIdentifier: 
-  TimeDelayRange: {x: 4, y: 8}
+  TimeDelayRange: {x: 10, y: 20}
   ObjectsCountRange: {x: 1, y: 2}
-  TimeDelay: 4
+  TimeDelay: 7

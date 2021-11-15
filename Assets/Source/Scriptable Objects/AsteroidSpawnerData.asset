@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a871832deec8b4d82226f0fc635b36, type: 3}
   m_Name: AsteroidSpawnerData
   m_EditorClassIdentifier: 
-  TimeDelayRange: {x: 3, y: 6}
-  ObjectsCountRange: {x: 1, y: 3}
+  TimeDelayRange: {x: 5, y: 10}
+  ObjectsCountRange: {x: 1, y: 2}
   TimeDelay: 3

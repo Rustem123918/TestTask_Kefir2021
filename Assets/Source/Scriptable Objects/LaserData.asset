@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5d82e588fe6e64fadfab7c8a0ab585, type: 3}
   m_Name: LaserData
   m_EditorClassIdentifier: 
-  MaxCharge: 3
+  MaxCharge: 2
   DecreaseChargeSpeed: 1
   IncreaseChargeSpeed: 1
   RegenerateTimeDelay: 2
