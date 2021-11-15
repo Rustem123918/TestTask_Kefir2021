@@ -10,7 +10,7 @@ public class SpawnerBase : MonoBehaviour
     private SpawnerBaseModel model;
     private void Awake()
     {
-        model = new SpawnerBaseModel(spawnerData);
+        model = new SpawnerBaseModel(spawnerData.TimeDelayRange, spawnerData.ObjectsCountRange, spawnerData.TimeDelay);
         model.OnSpawn += Spawn;
     }
     private void Start()

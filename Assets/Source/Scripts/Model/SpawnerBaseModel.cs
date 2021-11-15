@@ -18,11 +18,11 @@ public class SpawnerBaseModel
     {
         gameZone = GetGameZone();
     }
-    public SpawnerBaseModel(SpawnerData spawnerData)
+    public SpawnerBaseModel(Vector2 timeDelayRange, Vector2 objectsCountRange, float timeDealy)//SpawnerData spawnerData)
     {
-        this.timeDelayRange = spawnerData.TimeDelayRange;
-        this.objectsCountRange = spawnerData.ObjectsCountRange;
-        this.timeDelay = spawnerData.TimeDelay;
+        this.timeDelayRange = timeDelayRange;//spawnerData.TimeDelayRange;
+        this.objectsCountRange = objectsCountRange;//spawnerData.ObjectsCountRange;
+        this.timeDelay = timeDealy;// spawnerData.TimeDelay;
     }
     /// <summary>
     /// Метод вычисляет размеры игровой зоны, исходя из размеров экрана пользователя

@@ -1,6 +1,7 @@
 using Supyrb;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
@@ -14,10 +15,45 @@ public class Ship : MonoBehaviour
     private Pistol pistol;
     private Laser laser;
 
+    private bool laserShooting;
     private bool moveForward;
     private ERotateDirection rotateDirection;
 
     private ShipModel model;
+
+    #region Input handlers
+    public void PistolShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            pistol.Fire();
+    }
+    public void LaserShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            laserShooting = true;
+        else if (context.canceled)
+        {
+            laser.StopFire();
+            laserShooting = false;
+        }
+    }
+    public void Move(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+            moveForward = true;
+        else if (context.canceled)
+            moveForward = false;
+    }
+    public void Rotate(InputAction.CallbackContext context)
+    {
+        if (context.ReadValue<float>() == 1f)
+            rotateDirection = ERotateDirection.Right;
+        else if (context.ReadValue<float>() == -1f)
+            rotateDirection = ERotateDirection.Left;
+        else
+            rotateDirection = ERotateDirection.None;
+    }
+    #endregion
     private void Awake()
     {
         model = new ShipModel(transform.position, 0f, speed, rotationSpeed);
@@ -27,28 +63,8 @@ public class Ship : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.D))
-            rotateDirection = ERotateDirection.Right;
-        else if (Input.GetKeyUp(KeyCode.D))
-            rotateDirection = ERotateDirection.None;
-        else if (Input.GetKeyDown(KeyCode.A))
-            rotateDirection = ERotateDirection.Left;
-        else if (Input.GetKeyUp(KeyCode.A))
-            rotateDirection = ERotateDirection.None;
-
-        if (Input.GetKeyDown(KeyCode.W))
-            moveForward = true;
-        else if (Input.GetKeyUp(KeyCode.W))
-            moveForward = false;
-
-        if (Input.GetKeyDown(KeyCode.K))
-            pistol.Fire();
-        else if (Input.GetKey(KeyCode.L))
+        if (laserShooting)
             laser.Fire();
-        else if (Input.GetKeyUp(KeyCode.L))
-            laser.StopFire();
-
-        //model.Update();
     }
     private void FixedUpdate()
     {
