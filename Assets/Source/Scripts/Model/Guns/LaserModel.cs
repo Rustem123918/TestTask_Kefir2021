@@ -6,6 +6,8 @@ public class LaserModel
 {
     public event Action OnFire;
     public event Action OnChargeEnd;
+    public event Action OnStopIncreaseChargeRoutine;
+    public event Action OnStartIncreaseChargeRoutine;
 
     public float MaxCharge => maxCharge;
     public float CurrentCharge => currentCharge;
@@ -19,7 +21,7 @@ public class LaserModel
     private float currentCharge;
     private float lastFireTime;
 
-    private Coroutine increaseChargeRoutine;
+    private bool increaseChargeRoutineIsGoing;
     public LaserModel(float maxCharge, float decreaseChargeSpeed, float increaseChargeSpeed, float regenerateTimeDelay)
     {
         this.maxCharge = maxCharge;
@@ -29,7 +31,7 @@ public class LaserModel
 
         this.currentCharge = maxCharge;
 
-        CoroutineManager.Instance.StartRoutine(RegenerationRoutine());
+        increaseChargeRoutineIsGoing = false;
     }
     public void Fire()
     {
@@ -38,18 +40,18 @@ public class LaserModel
             OnChargeEnd?.Invoke();
             return;
         }
-        if (increaseChargeRoutine != null)
+        if (increaseChargeRoutineIsGoing)
         {
             Debug.Log("Stop increase routine");
-            CoroutineManager.Instance.StopRoutine(increaseChargeRoutine);
-            increaseChargeRoutine = null;
+            increaseChargeRoutineIsGoing = false;
+            OnStopIncreaseChargeRoutine?.Invoke();
         }
 
         currentCharge = Mathf.Max(0f, currentCharge - decreaseChargeSpeed * Time.deltaTime);
         lastFireTime = Time.time;
         OnFire?.Invoke();
     }
-    private IEnumerator IncreaseChargeRoutine()
+    public IEnumerator IncreaseChargeRoutine()
     {
         while(true)
         {
@@ -59,14 +61,15 @@ public class LaserModel
             yield return null;
         }
     }
-    private IEnumerator RegenerationRoutine()
+    public IEnumerator RegenerationRoutine()
     {
         while(true)
         {
-            if (CheckRegenerateTimeDelay() && increaseChargeRoutine == null && currentCharge < maxCharge)
+            if (CheckRegenerateTimeDelay() && !increaseChargeRoutineIsGoing && currentCharge < maxCharge)
             {
                 Debug.Log("Start increase routine");
-                increaseChargeRoutine = CoroutineManager.Instance.StartRoutine(IncreaseChargeRoutine());
+                increaseChargeRoutineIsGoing = true;
+                OnStartIncreaseChargeRoutine?.Invoke();
             }
 
             yield return null;

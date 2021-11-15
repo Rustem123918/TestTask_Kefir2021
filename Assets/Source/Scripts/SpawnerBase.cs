@@ -12,10 +12,8 @@ public class SpawnerBase : MonoBehaviour
     {
         model = new SpawnerBaseModel(spawnerData.TimeDelayRange, spawnerData.ObjectsCountRange, spawnerData.TimeDelay);
         model.OnSpawn += Spawn;
-    }
-    private void Start()
-    {
-        model.StartSpawning();
+        model.OnStartSpawnWithDelayRoutine += () => StartCoroutine(model.SpawnWithDelayRoutine());
+        StartCoroutine(model.SpawnRoutine());
     }
     private void Spawn(Vector2 pos, float rot)
     {

@@ -14,6 +14,8 @@ public class Laser : MonoBehaviour
 
     public LaserModel LaserModel => laserModel;
     private LaserModel laserModel;
+
+    private Coroutine increaseChargeRoutine;
     public void Fire()
     {
         laserModel.Fire();
@@ -29,6 +31,16 @@ public class Laser : MonoBehaviour
         laserModel = new LaserModel(laserData.MaxCharge, laserData.DecreaseChargeSpeed, laserData.IncreaseChargeSpeed, laserData.RegenerateTimeDelay);
         laserModel.OnFire += FireLaser;
         laserModel.OnChargeEnd += StopFire;
+        laserModel.OnStopIncreaseChargeRoutine += () =>
+        {
+            StopCoroutine(increaseChargeRoutine);
+            increaseChargeRoutine = null;
+        };
+        laserModel.OnStartIncreaseChargeRoutine += () =>
+        {
+            increaseChargeRoutine = StartCoroutine(laserModel.IncreaseChargeRoutine());
+        };
+        StartCoroutine(laserModel.RegenerationRoutine());
     }
     private void FireLaser()
     {

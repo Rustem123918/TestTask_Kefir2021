@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpawnerBaseModel
 {
     public event System.Action<Vector2, float> OnSpawn;
+    public event System.Action OnStartSpawnWithDelayRoutine;
 
     public static Vector2 GameZone => gameZone;
     private static Vector2 gameZone;
@@ -11,8 +12,6 @@ public class SpawnerBaseModel
     private Vector2 timeDelayRange;
     private Vector2 objectsCountRange;
     private float timeDelay;
-
-    private Coroutine spawnRoutine;
 
     static SpawnerBaseModel()
     {
@@ -37,25 +36,17 @@ public class SpawnerBaseModel
 
         return result;
     }
-    public void StartSpawning()
-    {
-        spawnRoutine = CoroutineManager.Instance.StartRoutine(SpawnRoutine());
-    }
-    public void StopSpawnin()
-    {
-        CoroutineManager.Instance.StopRoutine(spawnRoutine);
-    }
-    private IEnumerator SpawnRoutine()
+    public IEnumerator SpawnRoutine()
     {
         while (true)
         {
             yield return new WaitForSeconds(timeDelay);
             var count = GetCountAsteroidsToSpawn();
             for (int i = 0; i < count; i++)
-                CoroutineManager.Instance.StartRoutine(SpawnWithDelay());
+                OnStartSpawnWithDelayRoutine?.Invoke();
         }
     }
-    private IEnumerator SpawnWithDelay()
+    public IEnumerator SpawnWithDelayRoutine()
     {
         var delay = GetTimeDelay();
         yield return new WaitForSeconds(delay);
