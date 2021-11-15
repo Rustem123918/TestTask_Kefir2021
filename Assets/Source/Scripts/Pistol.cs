@@ -10,6 +10,9 @@ public class Pistol : MonoBehaviour
     [SerializeField]
     private GameObject bulletPrefab;
 
+    [SerializeField]
+    private GameObject vfx;
+
     private PistolModel pistolModel;
     public void Fire()
     {
@@ -23,5 +26,7 @@ public class Pistol : MonoBehaviour
     private void FireBullet()
     {
         Instantiate(bulletPrefab, firePosition.position, firePosition.rotation);
+        var effect = Instantiate(vfx, firePosition.position, firePosition.rotation);
+        Destroy(effect, 2f);
     }
 }

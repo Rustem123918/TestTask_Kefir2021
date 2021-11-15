@@ -101,8 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb17345775e52f445be7e4e84f68e0e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameData: {fileID: 11400000, guid: ae9dfe626beb352469e9677c54b17aaa, type: 2}
   speed: 2
+  deathVfx: {fileID: 4077609212228883784, guid: e3f4d8aceb83f32459151f4b376b6d71, type: 3}
 --- !u!60 &5407883307743744792
 PolygonCollider2D:
   m_ObjectHideFlags: 0

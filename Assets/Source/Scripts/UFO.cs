@@ -4,6 +4,8 @@ public class UFO : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private GameObject deathVfx;
 
     private Ship ship;
     private AddCoinsComponent addCoinsComponent;
@@ -28,6 +30,8 @@ public class UFO : MonoBehaviour
         {
             addCoinsComponent.AddCoins();
             Destroy(gameObject);
+            var effect = Instantiate(deathVfx, transform.position, Quaternion.identity);
+            Destroy(effect, 2f);
         }
     }
 }

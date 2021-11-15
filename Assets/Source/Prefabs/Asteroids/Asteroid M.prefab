@@ -52,6 +52,7 @@ MonoBehaviour:
   speed: 2.5
   asteroidMedium: {fileID: 471781796906059837}
   asteroidSmall: {fileID: 8293901147184058912, guid: e9d2de43991f60f4bbc7e7b02a0d803f, type: 3}
+  deathVfx: {fileID: 4077609212228883784, guid: e3f4d8aceb83f32459151f4b376b6d71, type: 3}
 --- !u!50 &754560891400337919
 Rigidbody2D:
   serializedVersion: 4

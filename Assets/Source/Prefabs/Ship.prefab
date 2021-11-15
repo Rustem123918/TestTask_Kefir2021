@@ -199,6 +199,7 @@ MonoBehaviour:
   pistolData: {fileID: 11400000, guid: d3534d34dd409e941a975e835a221840, type: 2}
   firePosition: {fileID: 9196571995926356991}
   bulletPrefab: {fileID: 7688691954142543380, guid: 22bd2e31f7ff31e4b9e530791bd9a38e, type: 3}
+  vfx: {fileID: 2254933511377245085, guid: bf99853bca2a10f498a258aa3a54f811, type: 3}
 --- !u!50 &9196571995556440620
 Rigidbody2D:
   serializedVersion: 4

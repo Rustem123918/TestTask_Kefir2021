@@ -13,6 +13,9 @@ public class Asteroid : MonoBehaviour
     [SerializeField]
     private GameObject asteroidSmall;
 
+    [SerializeField]
+    private GameObject deathVfx;
+
     private AddCoinsComponent addCoinsComponent;
 
     private AsteroidModel model;
@@ -34,11 +37,13 @@ public class Asteroid : MonoBehaviour
             CheckAsteroidType();
             addCoinsComponent.AddCoins();
             Destroy(gameObject);
+            SpawnDeathEffect();
         }
         else if(collision.CompareTag("Laser"))
         {
             addCoinsComponent.AddCoins();
             Destroy(gameObject);
+            SpawnDeathEffect();
         }
     }
 
@@ -70,5 +75,10 @@ public class Asteroid : MonoBehaviour
         {
             return Random.Range(-1f, -179f);
         }
+    }
+    private void SpawnDeathEffect()
+    {
+        var effect = Instantiate(deathVfx, transform.position, Quaternion.identity);
+        Destroy(effect, 2f);
     }
 }
