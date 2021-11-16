@@ -1,6 +1,5 @@
 using Supyrb;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
@@ -18,6 +17,8 @@ public class Ship : MonoBehaviour
     private bool laserShooting;
     private bool moveForward;
     private ERotateDirection rotateDirection;
+
+    private GameOverSignal gameOverSignal;
 
     private ShipModel model;
 
@@ -60,6 +61,8 @@ public class Ship : MonoBehaviour
         rotateDirection = ERotateDirection.None;
         pistol = GetComponent<Pistol>();
         laser = GetComponent<Laser>();
+
+        Signals.Get(out gameOverSignal);
     }
     private void Update()
     {
@@ -81,8 +84,8 @@ public class Ship : MonoBehaviour
     {
         if (collision.CompareTag("Asteroid") || collision.CompareTag("UFO"))
         {
-            Signals.Clear();
-            SceneManager.LoadScene(0);
+            GetComponent<Collider2D>().enabled = false;
+            gameOverSignal?.Dispatch();
         }
     }
 }

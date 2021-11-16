@@ -1,3 +1,4 @@
+using Supyrb;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
