@@ -20,6 +20,8 @@ public class UFO : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (ship == null)
+            return;
         model.UpdateShipPos(ship.transform.position);
         model.Move();
         transform.position = model.CurrentPosition;
